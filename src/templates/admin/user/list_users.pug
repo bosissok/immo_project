@@ -1,0 +1,29 @@
+extends ../layout.pug
+block breadcrumb 
+  
+      
+block content
+    .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        h1.h2 Liste des utilisateurs
+        .btn-toolbar.mb-2.mb-md-0
+            a.btn.btn-small.btn-primary(href="/admin/product") Ajouter un utilisateur
+    div
+        table.table.table-dark
+            thead
+                tr 
+                    th Email
+                    th Nom
+                    th Prénom
+                    th Téléphone
+                    th
+                    th
+                each user in users
+                    tr
+                        td= user.email
+                        td= user.lastname
+                        td= user.firstname
+                        td= user.mobile
+                        td.deleteButton
+                            a(href='/admin/user/delete?id='+user._id) Supprimer
+                        td.editButton
+                            a(href='/admin/user/edit?id='+user._id) Modifier

@@ -1,0 +1,51 @@
+extends ../layout.pug
+
+block content
+
+    h1 Modification de l'utilisateur
+    if error
+        .alert.alert-danger= error
+
+    form(role="form" method="post")
+
+        input(type="hidden" name="csrf" value=token_csrf)
+
+        .input-group.mb-3
+            span.input-group-prepend
+                span.input-group-text.d-none.d-lg-block 
+                    i.fa.fa-envelope 
+            input(type="email" class="form-control" placeholder="Email" name="email" value=form.email)   
+
+
+        .input-group.mb-3
+            .input-group-prepend
+                .input-group-text.d-none.d-lg-block 
+                    i.fa.fa-restroom
+            select(class="form-control" placeholder="Civilité" name="civility")
+                option(value="1") Monsieur
+                if form.civility == 2
+                    option(value="2" selected) Madame
+                else
+                    option(value="2" ) Madame
+
+        .input-group.mb-3
+            .input-group-prepend
+                .input-group-text.d-none.d-lg-block
+                    i.fa.fa-user
+            input(type="text" class="form-control" placeholder="Nom" name="lastname" value=form.lastname)
+
+        .input-group.mb-3
+            .input-group-prepend
+                .input-group-text.d-none.d-lg-block 
+                    i.fa.fa-user
+            input(type="text" class="form-control" placeholder="Prénom" name="firstname" value=form.firstname)
+
+        .input-group.mb-3
+            .input-group-prepend
+                .input-group-text.d-none.d-lg-block
+                    i.fa.fa-phone
+            input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=form.phone) 
+
+        .row.justify-content-center
+            .col-2
+                button.btn.btn-primary(type="submit") Enregistrer

@@ -1,0 +1,33 @@
+extends layout.pug
+
+block content
+    //- input(type="text" name="csrf" value=token_csrf)
+    p Bienvenue dans notre agence immobiliere
+    section
+        each product in list
+            .row.mb-2
+            .col-md-12
+                a(href="/annonce/"+product.id).row.g-0.border.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-md-250.position-relative
+                    .col-auto.d-none.d-lg-block
+                    .col.p-4.d-flex.flex-column.position-static
+                        strong.d-inline-block.mb-2.text-primary 
+                            case product.type
+                                when '1'
+                                    | Maison #{product.type.area}m² - #{product.type.room} pièce(s)
+                                    - break
+                                when '2' 
+                                    | Appartement #{product.type.area}m² - #{product.type.room} pièce(s)
+                                    - break
+                                when '3' 
+                                    | Terrain
+                                    - break
+                                when '4' 
+                                    | Parking
+                                    - break
+                                when '5' 
+                                    | Local / Bureau
+                                    - break
+                                default
+                                    | Autres
+                        h3.mb-0 #{product.type.price}€
+                        .mb-1.text-muted #{product.address.zipcode} #{product.address.city}   
